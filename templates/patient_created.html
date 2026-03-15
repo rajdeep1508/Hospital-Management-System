@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Patient Created</h2>
+
+<div style="background:white; border-radius:14px; padding:36px 40px; box-shadow:0 8px 32px rgba(26,39,68,0.11); border:1px solid #e2e8f0; max-width:440px;">
+
+  <p style="color:#065f46; background:#d1fae5; border-radius:8px; padding:10px 14px; font-weight:600; margin-bottom:24px;">✅ Patient account created successfully</p>
+
+  <p style="margin-bottom:6px; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.07em; color:#8a97aa; font-weight:600;">Username</p>
+  <p style="font-size:1.1rem; font-weight:700; color:#1a2744; margin-bottom:20px; font-family:'DM Serif Display',serif;">{{ username }}</p>
+
+  <p style="margin-bottom:6px; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.07em; color:#8a97aa; font-weight:600;">Password</p>
+  <p style="font-size:1.1rem; font-weight:700; color:#1a2744; margin-bottom:28px; font-family:'DM Serif Display',serif;">{{ password }}</p>
+
+  <p style="font-size:0.82rem; color:#8a97aa;">Please share these credentials with the patient securely.</p>
+
+</div>
+
+<br>
+<a href="/view_patients">← Back to Patients</a>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="home-wrap">
+
+  <h2>Hospital Management System</h2>
+  <p>Streamlined care — for doctors, patients, and administrators.</p>
+
+  <div class="home-actions">
+
+    <a href="/login/admin">
+      <button type="submit" style="background:#1a2744;">🔒 Admin Login</button>
+    </a>
+
+    <a href="/login/doctor">
+      <button type="submit" style="background:#0e8a7a;">👨‍⚕️ Doctor Login</button>
+    </a>
+
+    <a href="/login/patient">
+      <button type="submit" style="background:#243358;">🧑 Patient Login</button>
+    </a>
+
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Appointments</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Patient</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Time</th>
+{% if session.get('role') == 'admin' %}
+<th>Action</th>
+{% endif %}
+</tr>
+
+{% for a in appointments %}
+
+<tr>
+
+<td>{{a[0]}}</td>
+<td>{{a[1]}}</td>
+<td>{{a[2]}}</td>
+<td>{{a[3]}}</td>
+<td>{{a[4]}}</td>
+
+{% if session.get('role') == 'admin' %}
+
+<td>
+<a href="/delete_appointment/{{a[0]}}">Delete</a>
+</td>
+
+{% endif %}
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

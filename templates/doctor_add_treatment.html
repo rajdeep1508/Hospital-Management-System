@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>Doctor: {{ session['username'] }}</p>  
+
+<h2>Add Treatment</h2>
+
+<h3>Add Treatment</h3>
+
+<form method="POST">
+
+<label>Diagnosis</label>
+
+<select id="diagnosis" name="diagnosis">
+
+<option value="">Select Diagnosis</option>
+
+<option value="Hypertension">Hypertension</option>
+<option value="Coronary Artery Disease">Coronary Artery Disease</option>
+<option value="Arrhythmia">Arrhythmia</option>
+<option value="Acne">Acne</option>
+<option value="Skin Allergy">Skin Allergy</option>
+<option value="Dermatitis">Dermatitis</option>
+<option value="Migraine">Migraine</option>
+<option value="Epilepsy">Epilepsy</option>
+<option value="Stroke">Stroke</option>
+<option value="Fracture">Fracture</option>
+<option value="Back Pain">Back Pain</option>
+<option value="Arthritis">Arthritis</option>
+<option value="Common Cold">Common Cold</option>
+<option value="Chickenpox">Chickenpox</option>
+<option value="Pediatric Fever">Pediatric Fever</option>
+<option value="PCOS">PCOS</option>
+<option value="Pregnancy Checkup">Pregnancy Checkup</option>
+<option value="Menstrual Disorder">Menstrual Disorder</option>
+<option value="Depression">Depression</option>
+<option value="Anxiety Disorder">Anxiety Disorder</option>
+<option value="Insomnia">Insomnia</option>
+<option value="Viral Fever">Viral Fever</option>
+<option value="Typhoid">Typhoid</option>
+<option value="Gastritis">Gastritis</option>
+
+</select>
+
+<br><br>
+
+<label>Treatment</label>
+
+<select id="treatment" name="treatment">
+
+<option value="">Select Treatment</option>
+
+</select>
+
+<br><br>
+
+
+
+<button type="submit">Save Treatment</button>
+
+</form>
+
+<script>
+
+document.getElementById("diagnosis").addEventListener("change", function(){
+
+    let diagnosis = this.value;
+
+    if(diagnosis === ""){
+        return;
+    }
+
+    fetch("/get_treatments/" + diagnosis)
+    .then(response => response.json())
+    .then(data => {
+
+        let treatmentDropdown = document.getElementById("treatment");
+
+        treatmentDropdown.innerHTML = "<option value='' disabled selected>Select Treatment</option>";
+
+        data.treatments.forEach(function(t){
+
+            let option = document.createElement("option");
+            option.value = t;
+            option.text = t;
+
+            treatmentDropdown.appendChild(option);
+
+        });
+
+    });
+
+});
+
+</script>
+
+{% endblock %}

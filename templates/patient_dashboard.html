@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Patient Dashboard</h2>
+
+<h3>Your Appointments</h3>
+
+<table border="1">
+
+<tr>
+<th>Doctor</th>
+<th>Date</th>
+<th>Time</th>
+</tr>
+
+{% for a in appointments %}
+
+<tr>
+<td>{{ a[0] }}</td>
+<td>{{ a[1] }}</td>
+<td>{{ a[2] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br><br>
+
+<h3>Your Treatment Records</h3>
+
+<table border="1">
+
+<tr>
+<th>Diagnosis</th>
+<th>Treatment</th>
+<th>Date</th>
+</tr>
+
+{% for t in treatments %}
+
+<tr>
+<td>{{ t[0] }}</td>
+<td>{{ t[1] }}</td>
+<td>{{ t[2] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

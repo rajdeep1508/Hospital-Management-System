@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Add Treatment</h2>
+
+<form method="POST">
+
+<label>Patient</label>
+
+<select name="patient_id">
+
+{% for p in patients %}
+
+<option value="{{p.patient_id}}">
+{{p.name}}
+</option>
+
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<label>Doctor</label>
+
+<select name="doctor_id">
+
+{% for d in doctors %}
+
+<option value="{{d.doctor_id}}">
+{{d.name}}
+</option>
+
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<label>Diagnosis</label>
+
+<input type="text" name="diagnosis">
+
+<br><br>
+
+<label>Treatment</label>
+
+<input type="text" name="treatment">
+
+<br><br>
+
+<button type="submit">Save</button>
+
+</form>
+
+{% endblock %}

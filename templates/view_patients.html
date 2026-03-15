@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Patient List</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Gender</th>
+<th>Phone</th>
+{% if session.get('role') == 'admin' %}
+<th>Action</th>
+{% endif %}
+</tr>
+
+{% for patient in patients %}
+
+<tr>
+
+<td>{{patient[0]}}</td>
+<td>{{patient[1]}}</td>
+<td>{{patient[2]}}</td>
+<td>{{patient[3]}}</td>
+<td>{{patient[4]}}</td>
+
+{% if session.get('role') == 'admin' %}
+
+<td>
+
+<a href="/edit_patient/{{patient[0]}}">Edit</a> |
+<a href="/delete_patient/{{patient[0]}}">Delete</a>
+</td>
+
+
+
+{% endif %}
+
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
