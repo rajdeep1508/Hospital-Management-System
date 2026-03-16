@@ -6,9 +6,10 @@ app.secret_key = "mysecretkey123"
 
 # DATABASE CONNECTION
 db = mysql.connector.connect(
-    host="localhost",
+    host="maglev.proxy.rlwy.net",
     user="root",
-    password="password",
+    port=20801,
+    password="apzpYIzeIDxFFvFUcAvFxFCSgaNyZZup",
     database="hospital_db"
 )
 
