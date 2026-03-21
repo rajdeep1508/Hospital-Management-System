@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Edit Doctor</h2>
+
+<form method="POST">
+
+    Name:
+    <input type="text" name="name" value="{{doctor[1]}}"><br><br>
+
+    Specialization:
+    <input type="text" name="specialization" value="{{doctor[2]}}"><br><br>
+
+    Phone:
+    <input type="text" name="phone" value="{{doctor[3]}}"><br><br>
+
+    Email:
+    <input type="email" name="email" value="{{doctor[4]}}"><br><br>
+
+    <button type="submit">Update Doctor</button>
+
+</form>
+
+{% endblock %}

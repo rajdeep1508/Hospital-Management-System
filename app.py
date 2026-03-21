@@ -6,10 +6,9 @@ app.secret_key = "mysecretkey123"
 
 # DATABASE CONNECTION
 db = mysql.connector.connect(
-    host="maglev.proxy.rlwy.net",
+    host="localhost",
     user="root",
-    port=20801,
-    password="apzpYIzeIDxFFvFUcAvFxFCSgaNyZZup",
+    password="password",
     database="hospital_db"
 )
 
@@ -288,7 +287,76 @@ def edit_patient(id):
 
     return render_template("edit_patient.html", patient=patient, error=error)
 
+# ---------------- DELETE DOCTOR ----------------
 
+@app.route('/delete_doctor/<int:id>')
+def delete_doctor(id):
+
+    cursor = db.cursor()
+
+    # delete treatments related to doctor's appointments
+    query = """
+    DELETE FROM treatment_records
+    WHERE appointment_id IN
+    (SELECT appointment_id FROM appointments WHERE doctor_id=%s)
+    """
+    cursor.execute(query, (id,))
+
+    # delete appointments
+    query = "DELETE FROM appointments WHERE doctor_id=%s"
+    cursor.execute(query, (id,))
+
+    # delete doctor
+    query = "DELETE FROM doctors WHERE doctor_id=%s"
+    cursor.execute(query, (id,))
+
+    db.commit()
+    cursor.close()
+
+    return redirect('/view_doctors')
+
+
+# ---------------- EDIT DOCTOR ----------------
+
+@app.route('/edit_doctor/<int:id>', methods=['GET', 'POST'])
+def edit_doctor(id):
+
+    cursor = db.cursor()
+    error = None
+
+    if request.method == 'POST':
+
+        name = request.form.get('name')
+        specialization = request.form.get('specialization')
+        phone = request.form.get('phone')
+        email = request.form.get('email')
+
+        if not name or not specialization or not phone or not email:
+            error = "All fields are required"
+            cursor.execute("SELECT * FROM doctors WHERE doctor_id=%s", (id,))
+            doctor = cursor.fetchone()
+            cursor.close()
+            return render_template("edit_doctor.html", doctor=doctor, error=error)
+
+        query = """
+        UPDATE doctors
+        SET name=%s, specialization=%s, phone=%s, email=%s
+        WHERE doctor_id=%s
+        """
+
+        cursor.execute(query, (name, specialization, phone, email, id))
+        db.commit()
+
+        cursor.close()
+
+        return redirect('/view_doctors')
+
+    cursor.execute("SELECT * FROM doctors WHERE doctor_id=%s", (id,))
+    doctor = cursor.fetchone()
+
+    cursor.close()
+
+    return render_template("edit_doctor.html", doctor=doctor, error=error)
 # ---------------- SEARCH PATIENT ----------------
 
 @app.route('/search_patient', methods=['GET','POST'])
