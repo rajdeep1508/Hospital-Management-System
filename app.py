@@ -330,9 +330,8 @@ def edit_doctor(id):
         name = request.form.get('name')
         specialization = request.form.get('specialization')
         phone = request.form.get('phone')
-        email = request.form.get('email')
 
-        if not name or not specialization or not phone or not email:
+        if not name or not specialization or not phone:
             error = "All fields are required"
             cursor.execute("SELECT * FROM doctors WHERE doctor_id=%s", (id,))
             doctor = cursor.fetchone()
@@ -341,11 +340,11 @@ def edit_doctor(id):
 
         query = """
         UPDATE doctors
-        SET name=%s, specialization=%s, phone=%s, email=%s
+        SET name=%s, specialization=%s, phone=%s
         WHERE doctor_id=%s
         """
 
-        cursor.execute(query, (name, specialization, phone, email, id))
+        cursor.execute(query, (name, specialization, phone, id))
         db.commit()
 
         cursor.close()

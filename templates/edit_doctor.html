@@ -10,13 +10,20 @@
     <input type="text" name="name" value="{{doctor[1]}}"><br><br>
 
     Specialization:
-    <input type="text" name="specialization" value="{{doctor[2]}}"><br><br>
+    <select name="specialization" required>
+        <option value="" disabled>Select Specialization</option>
+        <option {% if doctor[2] == 'Cardiologist' %}selected{% endif %}>Cardiologist</option>
+        <option {% if doctor[2] == 'Dermatologist' %}selected{% endif %}>Dermatologist</option>
+        <option {% if doctor[2] == 'Neurologist' %}selected{% endif %}>Neurologist</option>
+        <option {% if doctor[2] == 'Orthopedic' %}selected{% endif %}>Orthopedic</option>
+        <option {% if doctor[2] == 'Pediatrician' %}selected{% endif %}>Pediatrician</option>
+        <option {% if doctor[2] == 'Gynecologist' %}selected{% endif %}>Gynecologist</option>
+        <option {% if doctor[2] == 'Psychiatrist' %}selected{% endif %}>Psychiatrist</option>
+        <option {% if doctor[2] == 'General Physician' %}selected{% endif %}>General Physician</option>
+    </select><br><br>
 
     Phone:
     <input type="text" name="phone" value="{{doctor[3]}}"><br><br>
-
-    Email:
-    <input type="email" name="email" value="{{doctor[4]}}"><br><br>
 
     <button type="submit">Update Doctor</button>
 
