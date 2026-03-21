@@ -168,17 +168,7 @@ https://hospital-management-system-jspw.onrender.com
 
 ---
 
-## 📸 Screenshots
 
-> *Add screenshots of your app here for a better first impression!*
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
 
 <div align="center">
 
